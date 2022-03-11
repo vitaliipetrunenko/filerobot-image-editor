@@ -1,8 +1,5 @@
 # .npmignore
 src
-examples
-config
-build
 scripts
 .babelrc
 .gitignore
