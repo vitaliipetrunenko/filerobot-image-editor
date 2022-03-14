@@ -1,4 +1,6 @@
 # .npmignore
+src
+scripts
 examples
 config
 build
