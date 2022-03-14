@@ -39,6 +39,7 @@ export default class extends Component {
       cropBeforeEdit,
       watermark,
       imageSealing,
+      defaults,
     } = props.config;
 
     this.state = {
@@ -493,6 +494,7 @@ export default class extends Component {
       onComplete,
       onError,
       closeOnLoad = true,
+      changeDefaults,
       t = {},
       theme,
     } = this.props;
@@ -542,6 +544,7 @@ export default class extends Component {
       onDownloadImage: this.onDownloadImage,
       handleSave: this.handleSave,
       onSaveColor: this.onSaveColor,
+      changeDefaults,
 
       ...imageParams,
       watermark,
@@ -551,6 +554,7 @@ export default class extends Component {
       savedColor,
       selectedShape,
       availableShapes,
+      defaults: this.props.config.defaults,
     };
     const previewProps = {
       t,
@@ -602,6 +606,7 @@ export default class extends Component {
       shapeOperations,
       selectedShape,
       latestCanvasSize,
+      changeDefaults,
     };
     const footerProps = {
       logoImage,

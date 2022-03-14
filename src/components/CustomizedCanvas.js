@@ -633,9 +633,12 @@ export default class CustomizedCanvas extends Component {
     y,
     width = 100,
     height = 75,
-    stroke = { color: "#000000" },
-    color = "#000000",
-    opacity = 1.0,
+    stroke = {
+      color: this.props.defaults?.stroke?.color || "#000000",
+      width: this.props.defaults?.stroke?.width || 1,
+    },
+    color = this.props.defaults?.color || "#000000",
+    opacity = this.props.defaults?.opacity || 1.0,
     variant = SHAPES_VARIANTS.RECT,
     tab = "shapes",
     ...others
@@ -684,10 +687,13 @@ export default class CustomizedCanvas extends Component {
   addCircle = ({
     x,
     y,
-    radius = 50,
-    stroke = { color: "#000000" },
-    color = "#000000",
-    opacity = 1.0,
+    radius = (opacity = this.props.defaults?.radius || 50),
+    stroke = {
+      color: this.props.defaults?.stroke?.color || "#000000",
+      width: this.props.defaults?.stroke?.width || 1,
+    },
+    color = this.props.defaults?.color || "#000000",
+    opacity = this.props.defaults?.opacity || 1.0,
     tab = "shapes",
     ...others
   } = {}) => {
@@ -732,9 +738,12 @@ export default class CustomizedCanvas extends Component {
     img,
     x = undefined,
     y = undefined,
-    opacity = 1.0,
+    opacity = this.props.defaults?.opacity || 1.0,
     tab = "image",
-    stroke = {},
+    stroke = {
+      color: this.props.defaults?.stroke?.color || "rgba(0,0,0,0)",
+      width: this.props.defaults?.stroke?.width || 0,
+    },
     otherStates,
     ...others
   } = {}) => {
@@ -799,14 +808,17 @@ export default class CustomizedCanvas extends Component {
   };
 
   addText = ({
-    text = "Text",
-    textSize = 62,
-    color = "#000000",
-    textFont = "Arial",
+    text = this.props.defaults?.text || "Text",
+    textSize = this.props.defaults?.textSize || 62,
+    color = this.props.defaults?.color || "#000000",
+    textFont = this.props.defaults?.textFont || "Arial",
     x = undefined,
     y = undefined,
-    stroke = { color: "#000000" },
-    opacity = 1.0,
+    stroke = {
+      color: this.props.defaults?.stroke?.color || "rgba(0,0,0,0)",
+      width: this.props.defaults?.stroke?.width || 0,
+    },
+    opacity = this.props.defaults?.opacity || 1.0,
     tab = "text",
     otherStates,
     ...others
@@ -999,7 +1011,7 @@ export default class CustomizedCanvas extends Component {
 
   updateShape = (updatedData, index, otherStatesToBeUpdated = undefined) => {
     const { shapes, selectedShape } = this.props;
-
+    this.props.changeDefaults({ ...updatedData });
     if (
       !updatedData ||
       (!index &&

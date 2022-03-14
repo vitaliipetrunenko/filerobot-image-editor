@@ -1,34 +1,49 @@
-import { Component } from 'react';
-import { AddWrapper, SettingsWrapper, FieldGroup, FieldCustomLabel } from '../../styledComponents/Shapes.ui';
-import { FieldInput } from '../../styledComponents';
-import Range from '../Range';
-import Select from '../Shared/Select';
+import { Component } from "react";
+import {
+  AddWrapper,
+  SettingsWrapper,
+  FieldGroup,
+  FieldCustomLabel,
+} from "../../styledComponents/Shapes.ui";
+import { FieldInput } from "../../styledComponents";
+import Range from "../Range";
+import Select from "../Shared/Select";
+import { defaults } from "gh-pages";
 
 export default class Text extends Component {
   componentDidMount() {
-    const { shapeOperations } = this.props;
+    const { shapeOperations, defaults } = this.props;
 
     shapeOperations.addText();
   }
 
-  updateOpacity = (newVal) => this.props.shapeOperations.updateShape({ opacity: newVal });
+  updateOpacity = (newVal) =>
+    this.props.shapeOperations.updateShape({ opacity: newVal });
 
   updateStroke = (property, value) => {
-    const { shapeOperations, selectedShape: { stroke = {} } } = this.props;
-    shapeOperations.updateShape({ stroke: { ...stroke, [property]: value }});
-  }
+    const {
+      shapeOperations,
+      selectedShape: { stroke = {} },
+    } = this.props;
+    shapeOperations.updateShape({ stroke: { ...stroke, [property]: value } });
+  };
 
-  updatePropertyFromEvent = (e) => this.props.shapeOperations.updateShape({ [e.target.name]: e.target.value });
+  updatePropertyFromEvent = (e) =>
+    this.props.shapeOperations.updateShape({ [e.target.name]: e.target.value });
 
   render() {
-    const { t, selectedShape = {}, config: { theme } } = this.props;
     const {
-      text = '',
-      textFont = 'Arial',
+      t,
+      selectedShape = {},
+      config: { theme },
+    } = this.props;
+    const {
+      text = "",
+      textFont = "Arial",
       textSize = 62,
       stroke = {},
-      color = '#000000',
-      opacity = 1
+      color = "#000000",
+      opacity = 1,
     } = selectedShape;
 
     return (
@@ -47,18 +62,22 @@ export default class Text extends Component {
           <FieldGroup>
             <FieldCustomLabel>Font family</FieldCustomLabel>
             <Select
-                list={theme.fonts}
-                valueProp="value"
-                id="textFont"
-                value={textFont}
-                style={{ width: 111 }}
-                onChange={(value) => this.updatePropertyFromEvent({ target: { name: 'textFont', value }})}
-                color="text-font"
-                notRelativePosition
-              />
+              list={theme.fonts}
+              valueProp="value"
+              id="textFont"
+              value={textFont}
+              style={{ width: 111 }}
+              onChange={(value) =>
+                this.updatePropertyFromEvent({
+                  target: { name: "textFont", value },
+                })
+              }
+              color="text-font"
+              notRelativePosition
+            />
           </FieldGroup>
           <FieldGroup>
-          <FieldCustomLabel>Font size</FieldCustomLabel>
+            <FieldCustomLabel>Font size</FieldCustomLabel>
             <FieldInput
               value={textSize}
               type="number"
@@ -73,13 +92,18 @@ export default class Text extends Component {
             <FieldInput
               value={color}
               type="color"
-              style={{ width: 30, padding: 0, background: 'transparent', boxShadow: 'none' }}
+              style={{
+                width: 30,
+                padding: 0,
+                background: "transparent",
+                boxShadow: "none",
+              }}
               name="color"
               onChange={this.updatePropertyFromEvent}
             />
           </FieldGroup>
           <Range
-            label={t['common.opacity']}
+            label={t["common.opacity"]}
             min={0}
             max={1}
             step={0.05}
@@ -90,10 +114,17 @@ export default class Text extends Component {
           <FieldGroup>
             <FieldCustomLabel>Stroke Color</FieldCustomLabel>
             <FieldInput
-              value={stroke.color || '#000000'}
+              value={stroke.color || "#000000"}
               type="color"
-              style={{ width: 30, padding: 0, background: 'transparent', boxShadow: 'none' }}
-              onChange={({ target: { value } }) => this.updateStroke('color', value)}
+              style={{
+                width: 30,
+                padding: 0,
+                background: "transparent",
+                boxShadow: "none",
+              }}
+              onChange={({ target: { value } }) =>
+                this.updateStroke("color", value)
+              }
             />
           </FieldGroup>
           <FieldGroup>
@@ -102,12 +133,14 @@ export default class Text extends Component {
               value={stroke.width || 0}
               type="number"
               style={{ width: 60 }}
-              onChange={({ target: { value } }) => this.updateStroke('width', value)}
+              onChange={({ target: { value } }) =>
+                this.updateStroke("width", value)
+              }
               min={0}
             />
           </FieldGroup>
         </SettingsWrapper>
       </AddWrapper>
-    )
+    );
   }
 }

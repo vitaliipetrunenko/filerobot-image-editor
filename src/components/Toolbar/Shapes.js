@@ -15,7 +15,8 @@ import Select from "../Shared/Select";
 
 export default class Add extends Component {
   renderSettings = (selectedShape) => {
-    const { shapeOperations, t, onSaveColor, savedColor } = this.props;
+    const { shapeOperations, t, onSaveColor, savedColor, defaults } =
+      this.props;
     const { variant, opacity, color, stroke = {} } = selectedShape;
 
     const updateOpacity = (newVal) =>
@@ -39,14 +40,14 @@ export default class Add extends Component {
           min={0}
           max={1}
           step={0.05}
-          range={opacity}
+          range={opacity instanceof Number ? opacity : defaults?.opacity}
           updateRange={updateOpacity}
           labelBefore={true}
         />
         <FieldGroup>
           <FieldCustomLabel>Stroke Color</FieldCustomLabel>
           <FieldInput
-            value={stroke.color || "#000000"}
+            value={stroke.color || defaults?.stroke?.color || "#000000"}
             type="color"
             style={{
               width: 30,
@@ -60,7 +61,7 @@ export default class Add extends Component {
         <FieldGroup>
           <FieldCustomLabel>Stroke width</FieldCustomLabel>
           <FieldInput
-            value={stroke.width || 0}
+            value={stroke.width || defaults?.stroke?.width || 0}
             type="number"
             style={{ width: 60 }}
             onChange={({ target: { value } }) => updateStroke("width", value)}
