@@ -20,11 +20,11 @@
     "cropperjs": "^1.5.5",
     "image-type": "^4.1.0",
     "js-sha1": "^0.6.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "styled-components": "5.1.1",
     "throttle-debounce": "^2.1.0",
-    "uuid": "^3.4.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.17",
@@ -41,6 +41,7 @@
     "@babel/preset-react": "^7.12.13",
     "ajv": "^6.12.2",
     "ajv-keywords": "^3.4.1",
+    "babel-cli": "^6.26.0",
     "babel-loader": "^8.1.0",
     "css-loader": "0.28.7",
     "gh-pages": "^2.2.0",
@@ -66,7 +67,9 @@
     "build": "npm run clean-build && npm run build-new && ./scripts/copy_build.sh",
     "build-w": "npm run clean-build && npm run build-new && .\\scripts\\copy_build.sh",
     "clean-dist": "rm -rf dist",
+    "w-clean-dist": "rmdir dist /s /q",
     "dist": "npm run clean-dist && npx babel src --out-dir dist --copy-files",
+    "w-dist": "npm run w-clean-dist && npx babel src --out-dir dist --copy-files",
     "deploy": "gh-pages -d examples/js/dist",
     "publish-demo": "npm run build-demo-js && npm run deploy"
   }
