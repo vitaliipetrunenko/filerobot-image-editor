@@ -44,7 +44,7 @@ class ImageEditorWrapper extends Component {
           color: config?.defaults?.stroke?.color || "#000000",
           width: config?.defaults?.stroke?.width || 1,
         },
-        textFont: "Arial",
+        textFont: config?.defaults?.font || "Arial",
       } || {};
     // config.setDefaults = config.setDefaults || (() => {});
 
