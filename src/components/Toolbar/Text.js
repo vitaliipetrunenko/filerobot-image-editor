@@ -40,10 +40,10 @@ export default class Text extends Component {
     const {
       text = "",
       textFont = "Arial",
-      textSize = 62,
+      textSize = defaults?.textSize || 62,
       stroke = {},
-      color = "#000000",
-      opacity = 1,
+      color = defaults?.color || "#000000",
+      opacity = defaults?.opacity instanceof Number ? defaults?.opacity : 1,
     } = selectedShape;
 
     return (
@@ -114,7 +114,7 @@ export default class Text extends Component {
           <FieldGroup>
             <FieldCustomLabel>Stroke Color</FieldCustomLabel>
             <FieldInput
-              value={stroke.color || "#000000"}
+              value={stroke.color || defaults?.stroke?.color || "#000000"}
               type="color"
               style={{
                 width: 30,
@@ -130,7 +130,7 @@ export default class Text extends Component {
           <FieldGroup>
             <FieldCustomLabel>Stroke width</FieldCustomLabel>
             <FieldInput
-              value={stroke.width || 0}
+              value={stroke.width || defaults?.stroke?.width || 0}
               type="number"
               style={{ width: 60 }}
               onChange={({ target: { value } }) =>
