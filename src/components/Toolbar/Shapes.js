@@ -74,9 +74,11 @@ export default class Add extends Component {
       <FieldGroup key="common-settings-fields">
         <FieldCustomLabel>Fill Color</FieldCustomLabel>
         {color === "rgba(0,0,0,0)" ? (
-          <DarkBtn onClick={returnColor}>
-            <span>Fill</span>
-          </DarkBtn>
+          <div style={{ minWidth: 140 }}>
+            <DarkBtn onClick={returnColor}>
+              <span>Fill</span>
+            </DarkBtn>
+          </div>
         ) : (
           <div style={{ display: "flex", minWidth: 140 }}>
             <DarkBtn style={{ minWidth: 100 }} onClick={removeColor}>
