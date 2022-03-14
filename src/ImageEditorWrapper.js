@@ -33,7 +33,19 @@ class ImageEditorWrapper extends Component {
     config.theme.fonts = config.theme.fonts || STANDARD_FONTS;
     config.colorScheme = config.colorScheme || "dark";
     config.platform = config.platform || "filerobot";
-    config.defaults = config.defaults || {};
+    config.defaults =
+      {
+        color: config?.defaults?.color || "#FFFFFF",
+        textSize: config?.defaults?.textSize || 62,
+        opacity: !Number.isNaN(config?.defaults?.opacity)
+          ? config?.defaults?.opacity
+          : 1,
+        stroke: {
+          color: config?.defaults?.stroke?.color || "#000000",
+          width: config?.defaults?.stroke?.width || 1,
+        },
+        textFont: "Arial",
+      } || {};
     // config.setDefaults = config.setDefaults || (() => {});
 
     const isCustomColorScheme = typeof config.colorScheme === "object";

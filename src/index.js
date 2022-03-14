@@ -5,14 +5,15 @@
 //     <ImageEditorWrapper
 //       show
 //       onChangeSettings={() => console.log("changed")}
-//       // src={"https://i.imgur.com/CuBqw5Q.jpeg"}
+//       src={"https://i.imgur.com/CuBqw5Q.jpeg"}
 //       config={{
 //         defaults: {
-//           color: "blue",
+//           color: "#ffffff",
+//           opacity: 0,
 //         },
 //       }}
 //     />
 //   );
 // };
 // export default App;
-export default from "./ImageEditorWrapper";
+// export default from "./ImageEditorWrapper";

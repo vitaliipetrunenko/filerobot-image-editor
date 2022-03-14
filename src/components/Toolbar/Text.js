@@ -8,11 +8,10 @@ import {
 import { FieldInput } from "../../styledComponents";
 import Range from "../Range";
 import Select from "../Shared/Select";
-import { defaults } from "gh-pages";
 
 export default class Text extends Component {
   componentDidMount() {
-    const { shapeOperations, defaults } = this.props;
+    const { shapeOperations } = this.props;
 
     shapeOperations.addText();
   }
@@ -36,6 +35,7 @@ export default class Text extends Component {
       t,
       selectedShape = {},
       config: { theme },
+      defaults,
     } = this.props;
     const {
       text = "",
@@ -43,7 +43,7 @@ export default class Text extends Component {
       textSize = defaults?.textSize || 62,
       stroke = {},
       color = defaults?.color || "#000000",
-      opacity = defaults?.opacity instanceof Number ? defaults?.opacity : 1,
+      opacity = !Number.isNaN(defaults?.opacity) ? defaults?.opacity : 1,
     } = selectedShape;
 
     return (

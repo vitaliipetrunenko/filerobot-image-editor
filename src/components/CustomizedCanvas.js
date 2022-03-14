@@ -693,7 +693,9 @@ export default class CustomizedCanvas extends Component {
       width: this.props.defaults?.stroke?.width || 1,
     },
     color = this.props.defaults?.color || "#000000",
-    opacity = this.props.defaults?.opacity || 1.0,
+    opacity = !Number.isNaN(this.props.defaults?.opacity)
+      ? this.props.defaults?.opacity
+      : 1.0,
     tab = "shapes",
     ...others
   } = {}) => {
@@ -738,7 +740,9 @@ export default class CustomizedCanvas extends Component {
     img,
     x = undefined,
     y = undefined,
-    opacity = this.props.defaults?.opacity || 1.0,
+    opacity = !Number.isNaN(this.props.defaults?.opacity)
+      ? this.props.defaults?.opacity
+      : 1.0,
     tab = "image",
     stroke = {
       color: this.props.defaults?.stroke?.color || "rgba(0,0,0,0)",
@@ -818,7 +822,9 @@ export default class CustomizedCanvas extends Component {
       color: this.props.defaults?.stroke?.color || "rgba(0,0,0,0)",
       width: this.props.defaults?.stroke?.width || 0,
     },
-    opacity = this.props.defaults?.opacity || 1.0,
+    opacity = !Number.isNaN(this.props.defaults?.opacity)
+      ? this.props.defaults?.opacity
+      : 1.0,
     tab = "text",
     otherStates,
     ...others

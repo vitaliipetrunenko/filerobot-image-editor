@@ -40,7 +40,7 @@ export default class Add extends Component {
           min={0}
           max={1}
           step={0.05}
-          range={opacity instanceof Number ? opacity : defaults?.opacity}
+          range={!Number.isNaN(opacity) ? opacity : defaults?.opacity}
           updateRange={updateOpacity}
           labelBefore={true}
         />
@@ -86,7 +86,7 @@ export default class Add extends Component {
               <span>Transparent</span>
             </DarkBtn>
             <FieldInput
-              value={color || "#000"}
+              value={color || defaults?.color || "#000"}
               type="color"
               style={{
                 width: 30,
