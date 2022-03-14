@@ -16,4 +16,4 @@
 //   );
 // };
 // export default App;
-// export default from "./ImageEditorWrapper";
+export default from "./ImageEditorWrapper";
